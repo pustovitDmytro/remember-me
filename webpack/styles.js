@@ -10,6 +10,7 @@ module.exports = function(paths,isDebug) {
                     test: /\.scss$/,
                     include: paths.source.directory,
                     use: ExtractTextPlugin.extract({
+                        publicPath: '../',
                         fallback: 'style-loader',
                         use: [{
                             loader: 'css-loader',

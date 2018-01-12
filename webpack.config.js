@@ -7,6 +7,7 @@ const uglify = require('./webpack/uglify');
 const images = require('./webpack/images');
 const html = require('./webpack/html');
 const json = require('./webpack/json');
+const icons = require('./webpack/icons');
 const babel = require('./webpack/babel');
 
 const DIRS = option => {
@@ -41,7 +42,8 @@ const common = (PATHS,browser,isDebug) => merge([
     html(PATHS),
     images(),
     json(PATHS),
-    babel()
+    babel(),
+    icons(PATHS)
 ]);
 
 module.exports = (env = {}) => {
@@ -54,12 +56,14 @@ module.exports = (env = {}) => {
             background: path.join(DIR.source, 'background'),
             popup: path.join(DIR.source, 'popup'),
             content: path.join(DIR.source, 'content'),
+            icons: path.join(DIR.source, 'icons'),
         },
         build: {
             directory: DIR.build,
             background: path.join(DIR.build, 'background'),
             popup: path.join(DIR.build, 'popup'),
             content: path.join(DIR.build, 'content'),
+            icons: path.join(DIR.build, 'icons'),
         }
     };
 

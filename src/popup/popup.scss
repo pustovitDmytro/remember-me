@@ -1,3 +1,10 @@
-.block{
-    color: black;
+.eye{
+    width: 400px;
+    height: 400px;
+    &__opened{
+        background: url("./eye.png") no-repeat;
+    }
+    &__closed{
+        background: url("./closed.png") no-repeat;
+    }
 }
