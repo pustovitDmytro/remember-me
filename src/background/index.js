@@ -1,1 +1,2 @@
-let working  = false;
+// let working  = false;
+console.log('inside background');

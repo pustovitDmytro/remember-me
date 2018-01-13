@@ -10,13 +10,10 @@ const json = require('./webpack/json');
 const icons = require('./webpack/icons');
 const babel = require('./webpack/babel');
 
-const DIRS = option => {
-    return {
+const DIRS = option => ({
         source: path.join(__dirname, 'src'),
         build: path.join(__dirname, `build/${option}`)
-    };
-};
-
+    });
 const common = (PATHS,browser,isDebug) => merge([
     {
         entry: {

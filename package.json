@@ -8,7 +8,7 @@
     "build:firefox": "webpack --env.browser=firefox --env.release",
     "start:firefox": "concurrently --kill-others \"npm run run:firefox\" \"npm run assemble:firefox\"",
     "start:chrome": "webpack --env.browser=chrome --watch",
-    "assemble:firefox":"webpack --env.browser=firefox --watch",
+    "assemble:firefox": "webpack --env.browser=firefox --watch",
     "run:firefox": "web-ext run --source-dir build/firefox --verbose"
   },
   "devDependencies": {
