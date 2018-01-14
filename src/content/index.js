@@ -21,5 +21,9 @@ function stilizy(link){
 // console.log('content',BROWS);
 console.log('inside content script');
 console.log('BROWSER', BROWSER);
+chrome.storage.sync.set({'value': 1});
+chrome.storage.sync.get('value', function (obj) {
+    console.log(obj);
+});
 const links = getLinks();
 links.filter(match).forEach(stilizy);
