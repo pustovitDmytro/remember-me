@@ -2,7 +2,7 @@
  * Created by pusti on 29.07.2017.
  */
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-module.exports = function(paths,isDebug) {
+module.exports = function(paths, isDebug) {
     return {
         module: {
             rules: [
@@ -20,7 +20,7 @@ module.exports = function(paths,isDebug) {
                                 localIdentName: isDebug ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
                                 minimize: !isDebug,
                                 discardComments: { removeAll: true },
-                            }},'sass-loader'],
+                            } }, 'sass-loader'],
                     }),
                 },
                 {

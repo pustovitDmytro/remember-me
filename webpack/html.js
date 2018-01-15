@@ -7,8 +7,8 @@ module.exports = function(PATHS) {
     return {
         plugins: [
             new HtmlWebpackPlugin({
-                filename: PATHS.build.popup + '/index.html',
-                template: PATHS.source.popup + '/index.html',
+                filename: `${PATHS.build.popup}/index.html`,
+                template: `${PATHS.source.popup}/index.html`,
                 chunks: ["popup"]
             })
         ]
