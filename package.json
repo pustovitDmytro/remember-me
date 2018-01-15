@@ -4,6 +4,8 @@
   "description": "Example of WebExtension with webpack",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "test:lint": "node_modules/.bin/eslint src",
+    "lint:fix": "node_modules/.bin/eslint --fix src",
     "build:chrome": "webpack --env.browser=chrome --env.release",
     "build:firefox": "webpack --env.browser=firefox --env.release",
     "start:firefox": "concurrently --kill-others \"npm run run:firefox\" \"npm run assemble:firefox\"",
@@ -13,6 +15,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
+    "babel-eslint": "^8.2.1",
     "babel-loader": "^7.1.1",
     "babel-preset-env": "^1.6.0",
     "clean-webpack-plugin": "^0.1.16",

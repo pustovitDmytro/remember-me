@@ -1,13 +1,13 @@
 function getLinks(){
     const array = [];
-    const  links = document.getElementsByTagName('a');
+    const links = document.getElementsByTagName('a');
     for(let i=0; i<links.length; i++) {
         array.push(links[i]);
     }
     return array;
 }
 
-function match({href}){
+function match({ href }){
     const re = /id/g;
     return re.test(href);
 }
@@ -18,9 +18,8 @@ function stilizy(link){
 }
 // console.log('content',BROWS);
 console.log('inside content script');
-console.log('BROWSER', BROWSER);
-chrome.storage.sync.set({'value': 1});
-chrome.storage.sync.get('value', function (obj) {
+chrome.storage.sync.set({ 'value': 1 });
+chrome.storage.sync.get('value', (obj) => {
     console.log(obj);
 });
 const links = getLinks();
