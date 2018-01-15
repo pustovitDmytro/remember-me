@@ -1,5 +1,3 @@
-// eslint-disable-line
-// function BROWS = browser;
 function getLinks(){
     const array = [];
     const  links = document.getElementsByTagName('a');
