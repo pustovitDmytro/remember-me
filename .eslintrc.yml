@@ -9,7 +9,13 @@ env:
 parserOptions:
     ecmaVersion: 6
     sourceType: module
+    ecmaFeatures:
+        jsx: true
 
+plugins:
+    - react
+extends:
+    - plugin:react/recommended
 rules:
 
     # Possible Errors
