@@ -12,4 +12,13 @@ class App extends Component {
     }
 }
 
-export default App;
+class Elem{
+    met1(){
+
+    }
+
+    met2(){
+
+    }
+}
+export default Elem;

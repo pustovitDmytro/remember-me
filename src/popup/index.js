@@ -1,25 +1,9 @@
-/*
- * import App from './components/App';
- *
- */
+import App from './components/App';
 import React from 'react';
-import { Component } from 'react';
 import { render } from 'react-dom';
+const metr = new App();
 
-class App extends Component {
-    render() {
-        return (
-            <div>
-                {
-                    "ssssssssssssssssssss"
-                }
-            </div>
-        );
-    }
-}
-// console.log(document.getElementById('app'));
 render(<App />, document.getElementById('app'));
-
 // /*
 //  * import browser from './../polifils/browser.js';
 //  * import css from './popup.scss';
