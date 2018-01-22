@@ -4,6 +4,7 @@ import { Component } from 'react';
 import { Input } from 'antd';
 import { Icon } from 'antd';
 import { Switch } from 'antd';
+import 'antd/dist/antd.css';
 
 function onChange(checked) {
     console.log(`switch to ${checked}`);

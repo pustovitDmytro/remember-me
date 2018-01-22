@@ -25,7 +25,6 @@ module.exports = function(paths, isDebug) {
                 },
                 {
                     test: /\.css$/,
-                    include: paths.source.directory,
                     use: ExtractTextPlugin.extract({
                         fallback: 'style-loader',
                         use: 'css-loader',
