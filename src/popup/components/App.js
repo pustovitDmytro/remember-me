@@ -1,24 +1,32 @@
+import React from 'react';
 import { Component } from 'react';
+// import Input from './Input.js';
+import { Input } from 'antd';
+import { Icon } from 'antd';
+import { Switch } from 'antd';
+
+function onChange(checked) {
+    console.log(`switch to ${checked}`);
+}
 
 class App extends Component {
     render() {
         return (
             <div>
-                {
-                    "ssssssssssssssssssss"
-                }
+                <div>
+                    {
+                        "ssssssssssssssssssss"
+                    }
+                </div>
+                <Input addonAfter={<Icon type="setting" />} defaultValue="text"/>
+                <Icon type="setting" />
+                <Icon type="question" style={{ fontSize: 16, color: '#08c' }} />
+                <div>dsdsdls;ld;sd;</div>
+                <Icon type="caret-up" />
+                <Switch defaultChecked onChange={onChange} />
             </div>
         );
     }
 }
 
-class Elem{
-    met1(){
-
-    }
-
-    met2(){
-
-    }
-}
-export default Elem;
+export default App;
