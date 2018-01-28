@@ -41,9 +41,9 @@ rules:
     no-regex-spaces: 1
     no-extra-boolean-cast: 1
     no-unsafe-negation: 1
-    no-extra-parens:
-        - warn
-        - all
+    # no-extra-parens: troubles with functional react
+    #     - warn
+    #     - all
 
     # Best Practices
     block-scoped-var: 2

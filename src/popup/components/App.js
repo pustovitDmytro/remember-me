@@ -1,74 +1,46 @@
-import React from 'react';
-import { Component } from 'react';
-// import Input from './Input.js';
-import { Input } from 'antd';
-import { Icon } from 'antd';
-import { Switch } from 'antd';
-import { Card } from 'antd';
-
-import { Menu } from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
-import { Breadcrumb } from 'antd';
-class A extends React.Component {
-  state = {
-      current: 'mail',
-  }
-
-  handleClick = e => {
-      this.setState({
-          current: e.key,
-      });
-  }
-
-  render() {
-      return (
-          <Menu
-              onClick={this.handleClick}
-              selectedKeys={[this.state.current]}
-              mode="horizontal"
-          >
-              <Menu.Item key="home">
-                  <Icon type="home" />Home
-              </Menu.Item>
-              <Menu.Item key="browse" disabled>
-                  <Icon type="cloud-o" />Browse Lists
-              </Menu.Item>
-              <SubMenu title={<span><Icon type="setting" />Settings</span>}>
-                  <Menu.Item key="setting:1">Option 1</Menu.Item>
-                  <Menu.Item key="setting:2">Option 2</Menu.Item>
-                  <Menu.Item key="setting:3">Option 3</Menu.Item>
-                  <Menu.Item key="setting:4">Option 4</Menu.Item>
-              </SubMenu>
-              <Menu.Item key="feedback">
-                  <a href="https://github.com/pustovitDmytro/remember-me" target="_blank" rel="noopener noreferrer">Feedback</a>
-              </Menu.Item>
-          </Menu>
-      );
-  }
-}
+import React, { Component } from 'react';
+import { Switch, Layout, Card } from 'antd';
+const { Content } = Layout;
+import Breadcrumb from './Breadcrumb.js';
+import AddNew from './AddNew.js';
+import Menu from './Menu.js';
+import { List } from 'antd';
+import s from '../styles/Switch.scss';
+const { Item } = List;
 
 function onChange(checked) {
     console.log(`switch to ${checked}`);
 }
+const path = [{
+    icon: 'home',
+    label: 'Home'
+}, {
+    label: 'User'
+}]
 
 class App extends Component {
     render() {
         return (
             <div>
-                <A/>
-                <Card title={<Breadcrumb>
-                    <Breadcrumb.Item href="">
-                        <Icon type="home" />
-                    </Breadcrumb.Item>
-                    <Breadcrumb.Item href="">
-                        <Icon type="user" />
-                        <span>User</span>
-                    </Breadcrumb.Item>
-                </Breadcrumb>} extra={
-                    <Switch defaultChecked onChange={onChange} />} style={{ width: 500 }}>
-                    <Input addonAfter={<Icon type="plus-circle-o" />} defaultValue="text"/>
-                </Card>
+                <Layout style={{ width: '450px' }}>
+                    <Menu/>
+                    <Content>
+                        <Card title ={<Breadcrumb path={path}/>}>
+                            <List>
+                                <Item>
+                                    <div className={s.container}>
+                                        <p>Smart filtering is off. <br/>
+                                        Enable it on this site</p>
+                                        <Switch defaultChecked onChange={onChange} />
+                                    </div>
+                                </Item>
+                                <Item>
+                                    <AddNew defaultValue="link"/>
+                                </Item>
+                            </List>
+                        </Card>
+                    </Content>
+                </Layout>
             </div>
         );
     }
