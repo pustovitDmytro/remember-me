@@ -19,6 +19,7 @@
     "babel-loader": "^7.1.1",
     "babel-plugin-import": "^1.6.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.16",
@@ -47,6 +48,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"

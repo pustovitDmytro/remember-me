@@ -40,7 +40,7 @@ class AppMenu extends Component {
                   <a href="https://github.com/pustovitDmytro/remember-me" target="_blank" rel="noopener noreferrer">Feedback</a>
               </Item>
               <Item key="account" disabled>
-                  <Avatar style={{ 'vertical-align': 'middle' }} icon="user" src={img} /> US
+                  <Avatar style={{ verticalAlign: 'middle' }} icon="user" src={img} /> US
               </Item>
           </Menu>
       );

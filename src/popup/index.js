@@ -1,9 +1,43 @@
-import App from './components/App';
+import 'babel-polyfill'
 import React from 'react';
 import { render } from 'react-dom';
-const metr = new App();
 
-render(<App />, document.getElementById('app'));
+import thunkMiddleware from 'redux-thunk';
+import { createLogger } from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import browser from '../polifils/browser.js';
+
+import App from './components/App';
+
+const loggerMiddleware = createLogger();
+
+const store = createStore(
+    reducer,
+    applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+    )
+);
+
+const init = () => {
+    const getTab = new Promise((res, rej) => {
+        browser.tabs.query({ active: true, currentWindow: true }, arrayOfTabs => {
+            const [activeTab] = arrayOfTabs;
+            console.log("activeTab", activeTab.url);
+        });
+    });
+}
+
+
+const launch = () => {
+    render(<Provider store={store}>
+        <App store={store}/>
+    </Provider>, document.getElementById('app'));
+};
+
+launch();
 // /*
 //  * import browser from './../polifils/browser.js';
 //  * import css from './popup.scss';
