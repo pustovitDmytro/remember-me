@@ -1,14 +1,15 @@
 const links = (state = {}, action) => {
+    console.log("action", action);
     switch (action.type) {
     case 'GET_LINKS':
         return {
             ...state,
-            array: action.payload
+            links: action.payload
         };
     case 'ADD_LINK':
         return {
             ...state,
-            array: action.payload
+            links: [...action.payload]
         };
     default:
         return state;

@@ -8,19 +8,20 @@ class Client {
     get(key){
         return new Promise((res, rej) => {
             this.browser.storage.sync.get(key, value => {
-                console.log("value", value);
                 try {
+                    if (this.browser.runtime.lastError){
+                        return rej(this.browser.runtime.lastError);
+                    }
                     if(isEmpty(value)) {
-                        console.log("isEmpty(value)", isEmpty(value));
                         return res([]);
                     }
-                    const parsed = JSON.parse(value);
+                    const parsed = JSON.parse(value[key]);
                     return res(parsed);
                 } catch(error){
                     return rej({
                         type: 'STORAGE_ERROR',
                         code: error,
-                        text: 'Wrong Item',
+                        text: `Cannot get ${key}`,
                         field: key
                     })
                 }
@@ -31,8 +32,21 @@ class Client {
     set(key, value){
         return new Promise((res, rej) => {
             const storageObject = { [key]: [JSON.stringify(value)] }
-            console.log("storageObject", storageObject);
-            this.browser.storage.sync.set(storageObject, res);
+            this.browser.storage.sync.set(storageObject, () => {
+                try {
+                    if (this.browser.runtime.lastError){
+                        return rej(this.browser.runtime.lastError);
+                    }
+                    return res(value);
+                } catch(error){
+                    return rej({
+                        type: 'STORAGE_ERROR',
+                        code: error,
+                        text: `Cannot set ${key}`,
+                        field: key
+                    })
+                }
+            });
         });
     }
 
@@ -40,18 +54,16 @@ class Client {
         return new Promise(async (res, rej) => {
             try{
                 let prev = await this.get(key);
-                console.log("prev", prev);
                 if(!prev.length){
                     prev = []
                 }
-                prev.append(value);
-                console.log("prev", prev);
+                prev.push(value);
                 return res(this.set(key, prev));
             }catch(error){
                 return rej({
                     type: 'STORAGE_ERROR',
                     code: error,
-                    text: 'Wrong Item',
+                    text: `Cannot append ${key}`,
                     field: key
                 })
             }

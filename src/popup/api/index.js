@@ -4,7 +4,7 @@ const call = client => (method, type, ...params) => dispatch => client[method](.
     then(response => new Promise( resolve => {
         dispatch({
             type,
-            response
+            payload: response
         })
         resolve(response);
     })).catch(error => {
