@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Menu, Avatar, Icon } from 'antd';
 import s from '../styles/Menu.scss';
 const { SubMenu, Item } = Menu;
+import router from '../router.js';
 
 class AppMenu extends Component {
   state = {
@@ -10,6 +11,11 @@ class AppMenu extends Component {
   }
 
   handleClick = e => {
+      console.log("e", e.key);
+      router.resolve({
+          pathname: 'home'
+      }).then(res => console.log('res', res)).
+          catch(err => console.log('err', err));
       this.setState({
           current: e.key,
       });
@@ -27,10 +33,10 @@ class AppMenu extends Component {
               <Item key="home">
                   <Icon type="home" />Home
               </Item>
-              <Item key="browse" disabled>
+              <Item key="browse">
                   <Icon type="cloud-o" />Lists
               </Item>
-              <SubMenu title={<span><Icon type="setting" />Settings</span>}>
+              <SubMenu title={<span><Icon type="setting" />Settings</span>} disabled>
                   <Item key="setting:1">Option 1</Item>
                   <Item key="setting:2">Option 2</Item>
                   <Item key="setting:3">Option 3</Item>

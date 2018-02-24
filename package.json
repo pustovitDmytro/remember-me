@@ -36,7 +36,8 @@
     "style-loader": "^0.19.1",
     "web-ext": "^2.3.1",
     "webpack": "^3.10.0",
-    "webpack-merge": "^4.1.0"
+    "webpack-merge": "^4.1.0",
+    "winston": "^2.4.0"
   },
   "author": "Dmytro Pustovit",
   "license": "MIT",
@@ -51,6 +52,7 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "universal-router": "^6.0.0"
   }
 }

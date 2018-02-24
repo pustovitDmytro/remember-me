@@ -1,15 +1,14 @@
 import 'babel-polyfill'
 import React from 'react';
 import { render } from 'react-dom';
-
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
-import browser from '../polifils/browser.js';
-
 import App from './components/App';
+import { getCurrentTab } from './actions/app.js';
+import { loadLinks } from './actions/lists.js';
 
 const loggerMiddleware = createLogger();
 
@@ -21,41 +20,17 @@ const store = createStore(
     )
 );
 
-const init = () => {
-    const getTab = new Promise((res, rej) => {
-        browser.tabs.query({ active: true, currentWindow: true }, arrayOfTabs => {
-            const [activeTab] = arrayOfTabs;
-            console.log("activeTab", activeTab.url);
-        });
-    });
-}
+const init = () => Promise.all([
+    store.dispatch(getCurrentTab()),
+    store.dispatch(loadLinks())
+]);
 
 
-const launch = () => {
+const launch = async () => {
+    await init();
     render(<Provider store={store}>
         <App store={store}/>
     </Provider>, document.getElementById('app'));
 };
 
 launch();
-// /*
-//  * import browser from './../polifils/browser.js';
-//  * import css from './popup.scss';
-//  */
-
-// /*
-//  * const photo = document.getElementById("photo");
-//  * photo.className=`${css.eye} ${css.eye__closed}`;
-//  * photo.onclick=function(){
-//  *     console.log('clicked in popup');
-//  *     console.log(window.location.href);
-//  *     browser.tabs.query({ active: true, currentWindow: true }, (arrayOfTabs) => {
-//  *         const [activeTab] = arrayOfTabs;
-//  *         console.log("activeTab", activeTab.url);
-//  *     });
-//  *     chrome.storage.sync.get('value', (obj) => {
-//  *         console.log(obj);
-//  *     });
-//  *     photo.className=`${css.eye} ${css.eye__opened}`;
-//  * }
-//  */

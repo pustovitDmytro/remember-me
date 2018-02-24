@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Input, Button } from 'antd';
 import s from '../styles/AddNew.scss';
 import { connect } from 'react-redux';
-import { addLink } from '../api';
+import { addLink } from '../actions/lists';
 
 class AddNew extends Component {
     state = {
@@ -17,14 +17,8 @@ class AddNew extends Component {
 
     handleAdd = () => {
         const value = this.state.text;
-        console.log("this.state", this.state);
-        console.log("value", value);
         const { dispatch } = this.props;
-        dispatch(addLink(value)).then(p => {
-            console.log("p", p);
-        }).catch(err => {
-            console.log("err", err);
-        })
+        dispatch(addLink(value));
     }
 
     render() {
@@ -38,4 +32,10 @@ class AddNew extends Component {
     }
 }
 
-export default connect()(AddNew);
+const mapStateToProps = state => {
+    return {
+        links: state.links
+    }
+}
+
+export default connect(mapStateToProps)(AddNew);

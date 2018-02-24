@@ -1,16 +1,11 @@
-const links = (state = {}, action) => {
-    console.log("action", action);
+const links = (state = [], action) => {
     switch (action.type) {
     case 'GET_LINKS':
-        return {
-            ...state,
-            links: action.payload
-        };
+        return [...action.payload];
     case 'ADD_LINK':
-        return {
-            ...state,
-            links: [...action.payload]
-        };
+        return [...action.payload];
+    case 'LOAD_LINKS':
+        return [...action.payload]
     default:
         return state;
     }

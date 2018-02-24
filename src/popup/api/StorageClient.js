@@ -53,11 +53,16 @@ class Client {
     append(key, value){
         return new Promise(async (res, rej) => {
             try{
-                let prev = await this.get(key);
-                if(!prev.length){
-                    prev = []
-                }
-                prev.push(value);
+                const stored = await this.get(key);
+                const prev = Array.isArray(stored)
+                    ? stored
+                    : [];
+                const filtered = Array.isArray(value)
+                    ? value.filter(item => prev.includes(item))
+                    : prev.includes(value)
+                        ? []
+                        : [value]
+                prev.push(...filtered);
                 return res(this.set(key, prev));
             }catch(error){
                 return rej({

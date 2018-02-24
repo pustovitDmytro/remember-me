@@ -1,19 +1,10 @@
-import Client from './StorageClient.js';
+import StorageClient from './StorageClient.js';
+import TabClient from './TabClient.js';
 
-const call = client => (method, type, ...params) => dispatch => client[method](...params).
-    then(response => new Promise( resolve => {
-        dispatch({
-            type,
-            payload: response
-        })
-        resolve(response);
-    })).catch(error => {
-        console.error(error);
-        dispatch({
-            type: "API_ERROR",
-            error,
-        });
-    })
+const call = client => (method, ...params) => client[method](...params);
 
-export const addLink = link => call(Client)('append', 'ADD_LINK', 'links', link);
-export const saveList = list => call(Client)('set', 'SAVE_LIST', 'links', list);
+export const addOne = link => call(StorageClient)('append', 'links', link);
+export const addMany = links => call(StorageClient)('append', 'links', links);
+export const getAll = () => call(StorageClient)('get', 'links');
+
+export const getTab = () => call(TabClient)('get');
