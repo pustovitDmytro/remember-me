@@ -9,6 +9,7 @@ import reducer from './reducers';
 import App from './components/App';
 import { getCurrentTab } from './actions/app.js';
 import { loadLinks } from './actions/lists.js';
+import { setLocation } from './actions/history.js';
 
 const loggerMiddleware = createLogger();
 
@@ -22,7 +23,8 @@ const store = createStore(
 
 const init = () => Promise.all([
     store.dispatch(getCurrentTab()),
-    store.dispatch(loadLinks())
+    store.dispatch(loadLinks()),
+    store.dispatch(setLocation('/home'))
 ]);
 
 

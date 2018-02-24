@@ -6,6 +6,7 @@ import Layout from './Layout.js';
 import AddNew from './AddNew.js';
 import s from '../styles/Switch.scss';
 import { connect } from 'react-redux';
+import router from '../router.js';
 
 function onChange(checked) {
     console.log(`switch to ${checked}`);
@@ -17,26 +18,23 @@ class App extends Component {
         const {
             links,
             error,
-            app : { activation, tab }
+            app : { activation, tab, location }
         } = state;
-        return { links, error, activation, tab }
+        return { links, error, activation, tab, location }
     }
 
     render() {
-        const { links, tab = '' } = this.props
+        const { links, tab = '', location } = this.props
+        console.log("location", location);
+        // const component = await router.resolve({ pathname: '/home' }).then(res => {
+        //     console.log(res);
+        //     return <AddNew/>;
+        // });
+        // console.log("component", component);
         return (
             <Layout>
-                <List>
-                    <Item>
-                        <div className={s.container}>
-                            <p>Smart filtering is off {links.length}</p>
-                            <Switch defaultChecked onChange={onChange} />
-                        </div>
-                    </Item>
-                    <Item>
-                        <AddNew defaultValue={tab}/>
-                    </Item>
-                </List>
+                { location }
+                <AddNew/>
             </Layout>
         );
     }
@@ -46,13 +44,15 @@ App.childContextTypes = {
     links: PropTypes.array,
     error: PropTypes.object,
     activation: PropTypes.bool,
-    tab: PropTypes.string
+    tab: PropTypes.string,
+    location: PropTypes.function
 };
 
 const mapStateToProps = state => {
     return {
         links: state.links,
-        tab: state.app.tab
+        tab: state.app.tab,
+        location: state.app.location
     }
 }
 

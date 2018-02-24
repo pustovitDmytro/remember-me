@@ -13,7 +13,7 @@ class AppMenu extends Component {
   handleClick = e => {
       console.log("e", e.key);
       router.resolve({
-          pathname: 'home'
+          pathname: `/${e.key}`,
       }).then(res => console.log('res', res)).
           catch(err => console.log('err', err));
       this.setState({
