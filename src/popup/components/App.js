@@ -24,17 +24,11 @@ class App extends Component {
     }
 
     render() {
-        const { links, tab = '', location } = this.props
+        const { links, tab = '', location } = this.props;
         console.log("location", location);
-        // const component = await router.resolve({ pathname: '/home' }).then(res => {
-        //     console.log(res);
-        //     return <AddNew/>;
-        // });
-        // console.log("component", component);
         return (
             <Layout>
                 { location }
-                <AddNew/>
             </Layout>
         );
     }
@@ -45,7 +39,7 @@ App.childContextTypes = {
     error: PropTypes.object,
     activation: PropTypes.bool,
     tab: PropTypes.string,
-    location: PropTypes.function
+    location: PropTypes.object
 };
 
 const mapStateToProps = state => {

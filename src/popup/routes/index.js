@@ -4,13 +4,10 @@ import Browse from './Browse.js';
 export default [
     {
         path: '/home',
-        action(context, params){
-            console.log("context, params", context, params);
-            return <Home/>;
-        }
+        action: () => (<Home/>)
     }, {
         path: '/browse',
-        action: () => Browse
+        action: () => (<Browse/>)
     }, {
         path: '*',
         action(){

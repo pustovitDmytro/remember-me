@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import { Menu, Avatar, Icon } from 'antd';
 import s from '../styles/Menu.scss';
 const { SubMenu, Item } = Menu;
-import router from '../router.js';
+import { setLocation } from '../actions/history.js'
+import { connect } from 'react-redux';
 
 class AppMenu extends Component {
   state = {
@@ -11,11 +12,8 @@ class AppMenu extends Component {
   }
 
   handleClick = e => {
-      console.log("e", e.key);
-      router.resolve({
-          pathname: `/${e.key}`,
-      }).then(res => console.log('res', res)).
-          catch(err => console.log('err', err));
+      const { dispatch } = this.props;
+      dispatch(setLocation(`/${e.key}`))
       this.setState({
           current: e.key,
       });
@@ -53,4 +51,4 @@ class AppMenu extends Component {
   }
 }
 
-export default AppMenu;
+export default connect()(AppMenu);
